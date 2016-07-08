@@ -41,7 +41,7 @@ public class DownLoadService extends Service {
     private String destFileName = "shan_yao.apk";
 
     private Context mContext;
-
+    private int preProgress = 0;
     private int NOTIFY_ID = 1000;
     private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
@@ -154,11 +154,13 @@ public class DownLoadService extends Service {
      * 更新通知
      */
     public void updateNotification(long progress) {
-        Log.e("zs", progress + "----");
-        builder.setContentText(progress + "%");
-        builder.setProgress(100, (int) progress, false);
-        notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(NOTIFY_ID, builder.build());
+        int currProgress = (int) progress;
+        if (preProgress < currProgress) {
+            builder.setContentText(progress + "%");
+            builder.setProgress(100, (int) progress, false);
+            notificationManager.notify(NOTIFY_ID, builder.build());
+        }
+        preProgress = (int) progress;
     }
 
     /**
