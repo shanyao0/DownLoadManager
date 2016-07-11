@@ -47,7 +47,6 @@ public abstract class FileCallback implements Callback<ResponseBody>{
 
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-        int size = response.headers().size();
         try {
             saveFile(response);
         } catch (Exception e) {

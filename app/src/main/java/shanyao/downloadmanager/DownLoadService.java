@@ -68,7 +68,7 @@ public class DownLoadService extends Service {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder();
         }
-        retrofit.baseUrl("http://cloud.huaching.com/parking/version/")
+        retrofit.baseUrl("http://112.124.9.133:8080/parking-app-admin-1.0/android/manager/adminVersion/")
                 .client(initOkHttpClient())
                 .build()
                 .create(IFileLoad.class)
